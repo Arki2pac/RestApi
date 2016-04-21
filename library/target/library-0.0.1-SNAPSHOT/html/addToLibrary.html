@@ -1,0 +1,16 @@
+<div ng-controller="AddController">
+    <h2>Add author</h2>
+    Add author first name<input type="text" ng-model="selectedAuthorFirstName">
+    Add author surname<input type="text" ng-model="selectedAuthorSurname">
+    <button ng-click='addAuthor()'>Add</button></br>
+    </br></br>
+    <h2>Add book</h2>
+    Add book title<input type="text" ng-model="selectedBookTitle">
+    Add book genre<input type="text" ng-model="selectedBookGenre">
+    Add book number of pages<input type="text" ng-model="selectedBookNumberOfPages">
+    <button ng-click='addBook()'>Add</button></br>
+    <h2>Add book to author</h2>
+    Add book Id<input type="text" ng-model="selectedBookId">
+    Add author Id<input type="text" ng-model="selectedAuthorId">
+    <button ng-click='addBookToAuthor()'>Add</button></br>
+</div>

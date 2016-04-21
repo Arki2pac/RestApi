@@ -1,0 +1,74 @@
+<div ng-controller="SearchController"><br><br>
+Find book by title:<input type="text" ng-model="selectedTitle">
+<button type="button" ng-click='getBooksByTitle()'>Search</button>
+    <div class="datatable" ng-show="getBoolTitle()"><table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Number of pages</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in titleData">
+            <td>{{x.title}}</td>
+            <td>{{x.genre}}</td>
+            <td>{{x.pagesNo}}</td>
+        </tr>
+        </tbody>
+    </table></div><br>
+    Find book by genre:<input type="text" ng-model="selectedGenre">
+    <button type="submit" ng-click='getBooksByGenre()'>Search</button>
+    <div class="datatable" ng-show="getBoolGenre()"><table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Number of pages</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in genreData">
+            <td>{{x.title}}</td>
+            <td>{{x.genre}}</td>
+            <td>{{x.pagesNo}}</td>
+        </tr>
+        </tbody>
+    </table></div>
+    <br>
+    Find book by author surname:<input type="text" ng-model="selectedAuthor">
+    <button type="submit" ng-click='getAuthorsAndBooksByAuthorSurname()'>Search</button></br>
+    <div class="datatable"  ng-show="getBoolSurname()"><table>
+        <thead>
+        <tr>
+            <th>Author first name</th>
+            <th>Author surname</th>
+            <th>Author books</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in authorsData">
+            <td>{{x.firstName}}</td>
+            <td>{{x.surname}}</td>
+            <td>
+                <div class="datatable"><table>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Number of pages</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="y in x.books">
+                        <td>{{y.title}}</td>
+                        <td>{{y.genre}}</td>
+                        <td>{{y.pagesNo}}</td>
+                    </tr>
+                    </tbody>
+                </table></div>
+            </td>
+        </tr>
+        </tbody>
+    </table></div>
+</div>

@@ -1,0 +1,20 @@
+/**
+ * Created by Grzegorz on 2016-04-01.
+ */
+
+--app.js
+
+'use strict';
+
+angular.module('bookStore', []).config(function ($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
+
+    $routeProvider.
+        when("/", {templateURL: "index.html"}).
+        when("/about", {templateURL: "html/about.html"})
+}).
+    run(function () {
+
+    });
+
+

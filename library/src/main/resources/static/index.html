@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Library</title>
+    <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script type = "text/javascript" src="js/app.js"></script>
+    <script type = "text/javascript" src="js/controllers.js"></script>
+    <script type = "text/javascript" src="js/bookRepository.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+<body ng-app="bookStore">
+<ng-include src="'html/home.html'"></ng-include>
+<div ng-view></div>
+</body>
+</html>

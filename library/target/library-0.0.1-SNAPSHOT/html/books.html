@@ -1,0 +1,22 @@
+<div ng-controller="SearchController" class="Books">
+    <br><br>
+    <div class="datatable"><table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Number of pages</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in bookData | filter: searchBoxBook">
+            <td>{{x.title}}</td>
+            <td>{{x.genre}}</td>
+            <td>{{x.pagesNo}}</td>
+        </tr>
+        </tbody>
+    </table></div>
+    <br>
+    Filter by book title:<input type="text" ng-model="searchBoxBook.title"><br>
+    Filter by genre:<input type="text" ng-model="searchBoxBook.genre">
+</div>
