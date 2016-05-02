@@ -26,6 +26,9 @@ var library = angular.module('bookStore', ['ngRoute']);
                 }).
                 when('/login', {
                     templateUrl: 'html/login.html'
+                }).
+                when('/delete', {
+                    templateUrl: 'html/delete.html'
                 });
         }]);
 
@@ -52,7 +55,7 @@ var library = angular.module('bookStore', ['ngRoute']);
         $scope.error = function(){
            console.log("Nie ma takiej książki");
         };
-
+        
         $scope.getBooks = function() {
             httpRepository.getBooks()
                 .then(function (response) {
@@ -114,6 +117,14 @@ var library = angular.module('bookStore', ['ngRoute']);
 
 library.controller('AddController', function($scope, httpRepository){
 
+
+    $scope.deleteBook = function() {
+        var bookTitle=  {
+            title: $scope.selectedBookTitle
+        };
+        httpRepository.deleteBook(bookTitle)
+    };
+    
     $scope.addBook = function () {
         var book = {
             title: $scope.selectedBookTitle,

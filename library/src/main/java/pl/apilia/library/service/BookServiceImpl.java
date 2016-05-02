@@ -21,6 +21,10 @@ public class BookServiceImpl {
         return (List<Book>) bookRepository.findAll();
     }
 
+    public void delete(Book book){
+        bookRepository.delete(book);
+    }
+
     public String comma(List<Book> books) {
         StringBuilder sb = new StringBuilder();
         for (Book book : books){

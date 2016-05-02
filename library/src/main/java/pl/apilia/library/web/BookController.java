@@ -19,6 +19,11 @@ public class BookController {
     private BookServiceImpl bookServiceImpl;
 
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "books/{title}")
+    public void deleteBook(@RequestBody Book book){
+        bookServiceImpl.delete(book);
+    }
+
     @RequestMapping("/books/list")
     public String bookList(){
         return bookServiceImpl.bookList();

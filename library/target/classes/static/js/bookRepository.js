@@ -38,18 +38,9 @@ angular.module('bookStore')
         this.addBookToAuthor = function(authorAndBook){
             return $http.post(authorsUrl + '/add/book', authorAndBook);
         };
-        this.login = function(username, password){
-            return $http({
-                method: 'POST',
-                url: '/login',
-                data: jQuery.param({
-                    username: username,
-                    password: password
-                }),
-                headers:{
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-        };
+        
+        this.deleteBook = function(bookTitle){
+            return $http.delete(booksUrl + '/' + bookTitle);
+        }
     });
 
