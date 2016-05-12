@@ -34,8 +34,22 @@ public class UserController {
     public List<User> findUsers(){
         return userServiceImpl.findAll();
     }
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
     public User findUsersById(@PathVariable Long userId){
         return userServiceImpl.findById(userId);
+    }
+
+    @RequestMapping(value = "/user/put/{userId}", method = RequestMethod.PUT)
+    public ResponseEntity updateUser(@PathVariable("userId") Long userId, @RequestBody User user){
+        User userToUpdate = userServiceImpl.findById(userId);
+        String login = user.getLogin();
+        String email = user.getEmail();
+        String password = user.getPassword();
+        userToUpdate.setEmail(email);
+        userToUpdate.setPassword(password);
+        userToUpdate.setLogin(login);
+        userServiceImpl.save(userToUpdate);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

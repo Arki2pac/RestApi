@@ -22,12 +22,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-
     @NotNull
     private String login;
-
-    private String surName;
 
     @Email
     @Column(unique = true)
@@ -36,8 +32,4 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @Pattern(regexp = "^[0-9]{6,14}$")
-    private String mobilePhoneNumber;
-
-    private String role;
 }
