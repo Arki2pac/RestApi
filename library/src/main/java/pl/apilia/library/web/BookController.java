@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.apilia.library.model.Book;
 import pl.apilia.library.service.BookServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,9 +20,10 @@ public class BookController {
     private BookServiceImpl bookServiceImpl;
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "books/{title}")
-    public void deleteBook(@RequestBody Book book){
-        bookServiceImpl.delete(book);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/books/delete/{bookId}")
+    public ResponseEntity deleteBook(@PathVariable("bookId") Long bookId){
+        bookServiceImpl.delete(bookId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping("/books/list")

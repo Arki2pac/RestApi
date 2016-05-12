@@ -39,8 +39,8 @@ angular.module('bookStore')
             return $http.post(authorsUrl + '/add/book', authorAndBook);
         };
         
-        this.deleteBook = function(bookTitle){
-            return $http.delete(booksUrl + '/' + bookTitle);
-        }
+        this.deleteBook = function(bookId){
+            return $http.delete(booksUrl + '/delete/' + bookId);
+        };
     });
 

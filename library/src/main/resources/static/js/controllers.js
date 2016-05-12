@@ -119,10 +119,8 @@ library.controller('AddController', function($scope, httpRepository){
 
 
     $scope.deleteBook = function() {
-        var bookTitle=  {
-            title: $scope.selectedBookTitle
-        };
-        httpRepository.deleteBook(bookTitle)
+        var bookId = $scope.selectedBookId;
+        httpRepository.deleteBook(bookId)
     };
     
     $scope.addBook = function () {

@@ -1,6 +1,8 @@
 package pl.apilia.library.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.apilia.library.db.BookRepository;
 import pl.apilia.library.model.Book;
@@ -21,8 +23,9 @@ public class BookServiceImpl {
         return (List<Book>) bookRepository.findAll();
     }
 
-    public void delete(Book book){
-        bookRepository.delete(book);
+    public void delete(Long bookId){
+        Long id = bookId;
+        bookRepository.delete(bookId);
     }
 
     public String comma(List<Book> books) {
