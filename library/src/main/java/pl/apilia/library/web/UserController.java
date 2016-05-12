@@ -4,26 +4,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import pl.apilia.library.model.CurrentUser;
+import org.springframework.web.bind.annotation.*;
 import pl.apilia.library.model.User;
 import pl.apilia.library.service.UserServiceImpl;
 
-import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by Grzegorz on 2016-04-20.
  */
+@RestController
 public class UserController {
 
     @Autowired
-    UserServiceImpl userServiceImpl;
+    private UserServiceImpl userServiceImpl;
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<User> getCurrentUser(Authentication authentication) {
-        User user = userServiceImpl.findById(((CurrentUser) authentication.getPrincipal()).getId());
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/user/delete/{userId}")
+    public ResponseEntity deleteBook(@PathVariable("userId") Long userId) {
+        userServiceImpl.delete(userId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/users/{login}", method = RequestMethod.POST)
+    public ResponseEntity addBook(@RequestBody User user){
+        userServiceImpl.addUser(user);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public List<User> findUsers(){
+        return userServiceImpl.findAll();
+    }
+    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
+    public User findUsersById(@PathVariable Long userId){
+        return userServiceImpl.findById(userId);
     }
 }

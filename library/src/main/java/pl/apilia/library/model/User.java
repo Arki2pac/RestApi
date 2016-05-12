@@ -22,17 +22,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String firstName;
 
     @NotNull
     private String login;
 
-    @NotNull
     private String surName;
 
     @Email
-    @NotNull
     @Column(unique = true)
     private String email;
 
@@ -42,6 +39,5 @@ public class User {
     @Pattern(regexp = "^[0-9]{6,14}$")
     private String mobilePhoneNumber;
 
-    @NotNull
     private String role;
 }

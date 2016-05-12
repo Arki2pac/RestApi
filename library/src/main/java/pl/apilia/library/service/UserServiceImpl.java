@@ -14,7 +14,7 @@ import java.util.List;
 public class UserServiceImpl {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public User findById(long id){
         return userRepository.findOne(id);
@@ -28,15 +28,20 @@ public class UserServiceImpl {
         return userRepository.findByLogin(login);
     }
 
-    public User findById(Long id){
-        return userRepository.getOne(id);
-    }
-
     public List<User> findAll(){
         return (List<User>) userRepository.findAll();
     }
 
-    public User save(User user){
-        return userRepository.save(user);
+    public void addUser(User user){
+         userRepository.save(user);
     }
+
+    public void delete(Long userId){
+        userRepository.delete(userId);
+    }
+
+    public List<User> getUsers(){
+        return (List<User>) userRepository.findAll();
+    }
+
 }
