@@ -1,5 +1,6 @@
 package pl.apilia.library.web;
 
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ public class UserController {
         userServiceImpl.addUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
+
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> findUsers(){
         return userServiceImpl.findAll();
