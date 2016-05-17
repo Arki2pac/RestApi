@@ -20,14 +20,14 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/user/delete/{userId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/user/{userId}")
     public ResponseEntity deleteBook(@PathVariable("userId") Long userId) {
         userServiceImpl.delete(userId);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users/{login}", method = RequestMethod.POST)
-    public ResponseEntity addBook(@RequestBody User user){
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ResponseEntity addUser(@RequestBody User user){
         userServiceImpl.addUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
@@ -37,12 +37,12 @@ public class UserController {
         return userServiceImpl.findAll();
     }
 
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
     public User findUsersById(@PathVariable Long userId){
         return userServiceImpl.findById(userId);
     }
 
-    @RequestMapping(value = "/user/put/{userId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/users/{userId}", method = RequestMethod.PUT)
     public ResponseEntity updateUser(@PathVariable("userId") Long userId, @RequestBody User user){
         User userToUpdate = userServiceImpl.findById(userId);
         String login = user.getLogin();

@@ -20,15 +20,10 @@ public class BookController {
     private BookServiceImpl bookServiceImpl;
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/books/delete/{bookId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/books/{bookId}")
     public ResponseEntity deleteBook(@PathVariable("bookId") Long bookId){
         bookServiceImpl.delete(bookId);
         return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @RequestMapping("/books/list")
-    public String bookList(){
-        return bookServiceImpl.bookList();
     }
 
     @RequestMapping("/books")
@@ -36,25 +31,25 @@ public class BookController {
        return bookServiceImpl.getBooks();
     }
 
-    @RequestMapping(value = "/books/add/book", method = RequestMethod.POST)
+    @RequestMapping(value = "/books", method = RequestMethod.POST)
     public ResponseEntity addBook(@RequestBody Book book){
         bookServiceImpl.addBook(book);
         return new ResponseEntity(HttpStatus.OK);
     }
 
 
-    @RequestMapping("/books/find/genre/{genre}")
-    public List<Book> findBooksByGenre(@PathVariable String genre){
+    @RequestMapping("/books/genre")
+    public List<Book> findBooksByGenre(@RequestParam(value = "genre") String genre){
         return bookServiceImpl.findBooksByGenre(genre);
     }
 
-    @RequestMapping("/books/find/id/{bookId}")
+    @RequestMapping("/books/{bookId}")
     public Book findBookById(@PathVariable Long bookId){
         return bookServiceImpl.findBookById(bookId);
     }
 
-    @RequestMapping("/books/find/title/{bookTitle}")
-    public List<Book> findBookByTitle(@PathVariable String bookTitle){
+    @RequestMapping("/books/title")
+    public List<Book> findBookByTitle(@RequestParam(value = "title") String bookTitle){
         return bookServiceImpl.findBookByTitle(bookTitle);
     }
 }

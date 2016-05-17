@@ -24,24 +24,20 @@ public class AuthorController {
     }
 
 
-    @RequestMapping(value = "/authors/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/authors", method = RequestMethod.POST)
     public ResponseEntity addAuthor(@RequestBody Author author){
          return authorServiceImpl.addAuthor(author);
     }
 
-    @RequestMapping(value = "/authors/add/book", method = RequestMethod.POST)
-    public ResponseEntity addBookToAuthor(@RequestBody AuthorAndBookWrapper authorAndBookWrapper){
-        return authorServiceImpl.addBookToAuthor(authorAndBookWrapper);
-    }
 
-    @RequestMapping("/authors/find/id/{authorId}")
+    @RequestMapping("/authors/{authorId}")
     public Author findAllBooksByAuthorId(@PathVariable Long authorId){
         return authorServiceImpl.findAllBooksByAuthorId(authorId);
     }
 
 
-    @RequestMapping("/authors/find/surname/{authorSurname}")
-    public List<Author> findAllBooksByAuthorSurname(@PathVariable String authorSurname){
+    @RequestMapping("/authors/books")
+    public List<Author> findAllBooksByAuthorSurname(@RequestParam(value = "surname") String authorSurname){
         return authorServiceImpl.findAllBooksByAuthorSurname(authorSurname);
     }
 }
