@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: Library
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: infokomes
+Built-By: Grzegorz
 Implementation-Vendor-Id: pl.apilia.library
 Created-By: IntelliJ IDEA
 Build-Jdk: 1.8.0_91

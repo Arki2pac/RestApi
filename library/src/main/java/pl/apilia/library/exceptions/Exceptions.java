@@ -13,11 +13,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class Exceptions {
 
-    @ExceptionHandler({UserException.class})
+    @ExceptionHandler({NotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public String handleNotFoundException(UserException exception){
-        return exception.getMessage() + "<br><br>"
+    public String handleNotFoundException(NotFoundException exception){
+        return "STATUS 404 NOT FOUND <br><br>"
                 + exception.getUserMessage();
     }
+
+    @ExceptionHandler({BadRequestException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public String handleBadRequestException(BadRequestException exception){
+        return "STATUS 400 BAD REQUEST <br><br>"
+                + exception.getUserMessage();
+    }
+
 }
