@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import pl.apilia.library.exceptions.UserException;
 import pl.apilia.library.model.User;
 import pl.apilia.library.service.UserServiceImpl;
 
@@ -20,7 +21,7 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/user/{userId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/users/{userId}")
     public ResponseEntity deleteBook(@PathVariable("userId") Long userId) {
         userServiceImpl.delete(userId);
         return new ResponseEntity(HttpStatus.OK);
@@ -38,8 +39,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public User findUsersById(@PathVariable Long userId){
-        return userServiceImpl.findById(userId);
+    public User findUsersById(@PathVariable Long userId) throws UserException {
+        User user = userServiceImpl.findById(userId);
+        if(user == null){
+            throw new UserException("404 STATUS NOT FOUND", "Użytkownik o podanym id nie istnieje");
+        }
+        return user;
     }
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.PUT)
