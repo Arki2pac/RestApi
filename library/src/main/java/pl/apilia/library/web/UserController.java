@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.apilia.library.exceptions.BadRequestException;
+import pl.apilia.library.exceptions.ConflictException;
 import pl.apilia.library.exceptions.NotFoundException;
 import pl.apilia.library.model.User;
 import pl.apilia.library.service.UserServiceImpl;
@@ -30,9 +31,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public ResponseEntity addUser(@RequestBody User user) throws BadRequestException{
-        if(user.getEmail() == null || user.getLogin() == null){
-            throw new BadRequestException("Nie podałeś wymaganych pól");
+    public ResponseEntity addUser(@RequestBody User user) throws BadRequestException, ConflictException{
+        if(user.getEmail() == null){
+            throw new BadRequestException("Nie podałeś maila(mail)");
+        }
+        if(user.getLogin() == null){
+            throw new BadRequestException("Nie podałeś loginu(login)");
+        }
+        if(userServiceImpl.findByEmail(user.getEmail()) != null){
+            throw  new ConflictException("Podany email już istnieje");
+        }
+        if(userServiceImpl.findByLogin(user.getLogin()) != null){
+            throw  new ConflictException("Podany login już istnieje");
         }
         userServiceImpl.addUser(user);
         return new ResponseEntity(HttpStatus.OK);

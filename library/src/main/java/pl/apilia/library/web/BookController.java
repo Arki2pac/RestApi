@@ -41,8 +41,11 @@ public class BookController {
 
     @RequestMapping(value = "/books", method = RequestMethod.POST)
     public ResponseEntity addBook(@RequestBody Book book) throws BadRequestException{
-        if(book.getGenre() == null || book.getTitle() == null){
-            throw new BadRequestException("Nie podałeś wymaganych pól");
+        if(book.getGenre() == null){
+            throw new BadRequestException("Nie podałeś rodzaju książki(genre)");
+        }
+        if(book.getTitle() == null){
+            throw new BadRequestException("Nie podałeś tytułu(title) książki");
         }
         bookServiceImpl.addBook(book);
         return new ResponseEntity(HttpStatus.OK);

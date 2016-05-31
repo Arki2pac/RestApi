@@ -31,8 +31,11 @@ public class AuthorController {
 
     @RequestMapping(value = "/authors", method = RequestMethod.POST)
     public ResponseEntity addAuthor(@RequestBody Author author) throws BadRequestException{
-        if(author.getFirstName() == null || author.getSurname() == null){
-            throw new BadRequestException("Nie podałeś wymaganych pól");
+        if(author.getFirstName() == null){
+            throw new BadRequestException("Nie podałeś imienia(firstName)");
+        }
+        if(author.getSurname() == null){
+            throw new BadRequestException("Nie podałeś nazwiska(surname)");
         }
          return authorServiceImpl.addAuthor(author);
     }

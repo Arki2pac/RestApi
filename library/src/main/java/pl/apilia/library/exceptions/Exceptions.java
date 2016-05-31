@@ -29,4 +29,11 @@ public class Exceptions {
                 + exception.getUserMessage();
     }
 
+    @ExceptionHandler({ConflictException.class})
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public String handleConflictException(ConflictException exception){
+        return "STATUS 409 CONFLICT <br><br>"
+                + exception.getUserMessage();
+    }
 }
