@@ -31,7 +31,7 @@ public class BookController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping("/books")
+    @RequestMapping(method = RequestMethod.GET, value = "/books")
     public List<Book> getBooks() throws NotFoundException {
         if (bookServiceImpl.getBooks() == null){
             throw new NotFoundException("Nie ma książek w bibliotece");
@@ -49,7 +49,7 @@ public class BookController {
     }
 
 
-    @RequestMapping("/books/genre")
+    @RequestMapping(method = RequestMethod.GET, value = "/books/genre")
     public List<Book> findBooksByGenre(@RequestParam(value = "genre") String genre) throws NotFoundException{
         if(bookServiceImpl.findBooksByGenre(genre) == null){
             throw new NotFoundException("Książka o takim gatunku nie istnieje");
@@ -57,7 +57,7 @@ public class BookController {
         return bookServiceImpl.findBooksByGenre(genre);
     }
 
-    @RequestMapping("/books/{bookId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/books/{bookId}")
     public Book findBookById(@PathVariable Long bookId) throws NotFoundException{
         if (bookServiceImpl.findBookById(bookId) == null) {
             throw new NotFoundException("Książka o podanym id nie istnieje.");
@@ -65,7 +65,7 @@ public class BookController {
         return bookServiceImpl.findBookById(bookId);
     }
 
-    @RequestMapping("/books/title")
+    @RequestMapping(method = RequestMethod.GET, value = "/books/title")
     public List<Book> findBookByTitle(@RequestParam(value = "title") String bookTitle) throws NotFoundException{
         if (bookServiceImpl.findBookByTitle(bookTitle) == null) {
             throw new NotFoundException("Książka o podanym tytule nie istnieje.");

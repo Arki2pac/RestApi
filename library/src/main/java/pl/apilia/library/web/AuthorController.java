@@ -20,7 +20,7 @@ public class AuthorController {
     @Autowired
     private AuthorServiceImpl authorServiceImpl;
 
-    @RequestMapping("/authors")
+    @RequestMapping(method = RequestMethod.GET, value = "/authors")
     public List<Author> getAuthors() throws NotFoundException{
         if (authorServiceImpl.getAuthors() == null) {
             throw new NotFoundException("Nie ma autorów w bazie");
@@ -38,7 +38,7 @@ public class AuthorController {
     }
 
 
-    @RequestMapping("/authors/{authorId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/authors/{authorId}")
     public Author findAllBooksByAuthorId(@PathVariable Long authorId) throws NotFoundException{
         if (authorServiceImpl.findAllBooksByAuthorId(authorId) == null) {
             throw new NotFoundException("Autor nie posiada książek");
@@ -47,7 +47,7 @@ public class AuthorController {
     }
 
 
-    @RequestMapping("/authors/books")
+    @RequestMapping(method = RequestMethod.GET, value = "/authors/books")
     public List<Author> findAllBooksByAuthorSurname(@RequestParam(value = "surname") String authorSurname) throws NotFoundException{
         if (authorServiceImpl.findAllBooksByAuthorSurname(authorSurname) == null) {
             throw new NotFoundException("Autor nie posiada książek");

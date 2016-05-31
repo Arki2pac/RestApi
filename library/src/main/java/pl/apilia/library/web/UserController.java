@@ -31,7 +31,7 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ResponseEntity addUser(@RequestBody User user) throws BadRequestException{
-        if(user.getEmail() == null || user.getLogin() == null || user.getPassword() == null){
+        if(user.getEmail() == null || user.getLogin() == null){
             throw new BadRequestException("Nie podałeś wymaganych pól");
         }
         userServiceImpl.addUser(user);
